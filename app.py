@@ -3,7 +3,7 @@ import openai
 import time
 import threading
 
-#api key
+#api_key = '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'
 last_request_time = time.time()
 lock = threading.Lock()
 
