@@ -1,0 +1,460 @@
+html {
+	display: grid;
+	min-height: 100%;
+}
+  
+body {
+	display: grid;
+	background: linear-gradient(to bottom left, #D4A3A9 40%, #E5DBE4 100%);
+	font-family: sans-serif;
+}
+
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    z-index: 9999; /* Higher z-index to appear above other elements */
+}
+
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #d34f8a;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+.loading-dot {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #d34f8a;
+    font-size: 1.2em;
+    padding: 10px 10px 10px 12px;
+    border-radius: 20px;
+    background-color: #E5DBE4; /* Adjust background color for loading dot */
+    float: left; /* Align loading dot to the left */
+    clear: both; /* Clear the float */
+    animation: dot-pulse 1s infinite;
+}
+
+@keyframes dot-pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.chat-image{
+	width: 260px; /* Set the width of the image */
+	height: auto; /* Maintain the aspect ratio */
+	margin-top: 200px; /* Set the top margin */
+	margin-left: 0px;
+}
+
+.in-container{
+	position: relative;
+	left: 5%;
+    margin: auto;
+    width: 600px;
+    height: 600px;
+}
+
+.container {
+    position: relative;
+	display: flex;
+	align-items: flex-start;
+	left: 0%;
+    margin: auto;
+    width: 800px;
+    height: 600px;
+}
+
+.chatbox {
+    position: relative;
+    height: 75%;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(119, 119, 119, 0.5);
+	margin-left: 20px; /* Adjust the left margin */
+}
+
+.chat-image {
+	width: 250px;
+	height: auto;
+	margin-right: 5px;
+	border-radius: 20%; /* Add a border radius for a circular image */
+}
+
+.top-bar {
+	width: 100%;
+	height: 60px;
+	background: white;
+	border-radius: 10px 10px 0 0;
+}
+
+.avatar {
+	width: 35px;
+	height: 35px;
+	background: linear-gradient(to bottom left, #D4A3A9 20%, #E5DBE4 100%);
+	border-radius: 50%;
+	position: absolute;
+	top: 11px;
+	left: 15px;
+	p {
+	  color: white;
+	  margin: 7px 12px;
+	}
+}
+
+.name {
+	position: absolute;
+	top: 22px;
+	text-transform: uppercase;
+	color: #777777;
+	font-size: .8em;
+	letter-spacing: 2px;
+	font-weight: 500;
+	left: 60px;
+}
+
+.menu {
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	width: 10px;
+	height: 20px;
+	cursor: pointer;
+	&:hover {
+	  transform: scale(1.1);
+	  transition: all .3s ease-in;
+	}
+}
+
+.icons {
+	position: absolute;
+	color: #d34f8a;
+	padding: 10px;
+	top: 5px;
+	right: 21px;
+	cursor: pointer;
+	.fas {
+	  padding: 5px;
+	  opacity: 0.8;
+	  &:hover {
+		transform: scale(1.1);
+		transition: all .3s ease-in;
+	  }
+	}
+}
+
+.dots {
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background-color: #D4A3A9;
+	box-shadow: 0px 7px 0px #D4A3A9, 0px 14px 0px #D4A3A9;
+}
+
+.middle {
+	position: absolute;
+	background: #d4b4b7;
+	width: 100%;
+	opacity: 0.85;
+	top: 60px;
+	height: 80%;
+}
+
+.incoming {
+	position: absolute;
+	width: 90%;
+	height: 80%;
+	padding: 20px;
+	background: lighten(#d5c7c7, 23%);
+	overflow-y: auto; /* Add a scrollbar for vertical overflow */
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.incoming::-webkit-scrollbar {
+    width: 0.1em; /* Set a width for the scrollbar track */
+}
+
+.incoming::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Set the color of the thumb to transparent */
+}
+
+/* Hide scrollbar for Firefox */
+.incoming {
+    scrollbar-width: thin; /* Set a width for the scrollbar track */
+    scrollbar-color: transparent transparent; /* Set the color of the thumb and track to transparent */
+}
+
+/* Add styles for the initial prompt */
+.initial-prompt {
+    position: relative;
+	margin-right: 0%;
+    display: inline-block;
+    margin-bottom: 10px;
+    color: black;
+    font-size: 1.2em;
+    padding: 10px 10px 10px 12px;
+    border-radius: 20px;
+    background-color: #E5DBE4; /* Adjust background color for chatbot messages */
+    float: left; /* Align chatbot messages to the left */
+    clear: both; /* Clear the float */
+}
+
+.message.user-message {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px 10px 10px 12px;
+    border-radius: 20px;
+    background-color: #d34f8a; /* Adjust background color for user messages */
+    float: right; /* Align user messages to the right */
+    clear: both; /* Clear the float */
+}
+
+/* Update styles for chatbot messages */
+.message.chatbot-message {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+    color: black;
+    font-size: 1.2em;
+    padding: 10px 10px 10px 12px;
+    border-radius: 20px;
+    background-color: #E5DBE4; /* Adjust background color for chatbot messages */
+    float: left; /* Align chatbot messages to the left */
+    clear: both; /* Clear the float */
+}
+
+.bottom-bar {
+	position: absolute;
+	width: 100%;
+	height: 55px;
+	bottom: 0;
+	background: white;
+	border-radius: 0 0 10px 10px;
+}
+
+.bubble {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 5px;
+	color: rgb(206, 46, 46);
+	font-size: 0.7em;
+	padding: 10px 10px 10px 12px;
+	border-radius: 20px;
+}
+
+.left {
+	left: 0px;
+}
+  
+input {
+	padding: 7px;
+	width: 74%;
+	left: 5%;
+	position: absolute;
+	border: 0;
+	top: 13px;
+	background: white;
+	color: #E5DBE4;
+}
+  
+input::placeholder {
+	color: #D4A3A9;
+}
+  
+input:focus {
+	color: #777777;
+	outline: 0;
+}
+
+.chat-display {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 5px;
+	color: black;
+	font-size: 0.7em;
+	padding: 10px 10px 10px 12px;
+	border-radius: 20px;
+}
+
+button {
+	position: absolute;
+	border: 0;
+	font-size: 1em;
+	color: #d34f8a;
+	top:  19px;
+	opacity: 0.8;
+	right: 17px;
+	cursor: pointer;
+	outline: 0;
+	&:hover {
+	  transform: scale(1.1);
+	  transition: all .3s ease-in-out;
+	  color: #D4A3A9;
+	}
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+footer {
+    background-color: #d34f8a;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Additional styling for the copyright notice */
+footer p {
+    margin: 0;
+	color: #fff;
+    font-size: 0.8em;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d34f8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #E5DBE4;
+}
+
+img {
+	width: 260px; /* Set the width of the image */
+	height: auto; /* Maintain the aspect ratio */
+	margin-top: 5px; /* Set the top margin */
+	float: right; /* Set the left margin */
+}
+
+/* style for the help or support desk */
+.help-desk {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    background-color: #d34f8a;
+    color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.help-icon {
+    font-size: 1.5em;
+    transition: transform 0.3s ease-in-out; /* adds transition for smooth hover effect */
+}
+
+/* adds hover effect for the help desk icon */
+.help-desk:hover .help-icon {
+    transform: scale(1.2);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 300px; 
+    margin: auto; 
+    margin-top: 10%; 
+    padding: 15px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.help-content {
+    font-size: 0.8em;
+}
+
+.help-content strong {
+    color: #d34f8a;
+}
+
+/* adds simple animation to the hotline */
+.help-content a {
+    color: #d34f8a;
+    transition: color 0.3s ease-in-out;
+}
+
+.help-content a:hover {
+    color: #666;
+}
+
+/* Media query for screens smaller than 600px */
+@media only screen and (max-width: 400px) {
+    .container {
+        width: 90%; /* Adjust the width for smaller screens */
+    }
+
+    .chat-image {
+        width: 100%; /* Make the chat image fill the width of the container */
+        margin-top: 20px; /* Adjust top margin for smaller screens */
+    }
+
+    .chatbox {
+        width: 100%; /* Make the chatbox fill the width of the container */
+        margin-left: 0; /* Remove the left margin */
+    }
+
+    .bottom-bar {
+        height: 70px; /* Adjust the height of the bottom bar for smaller screens */
+    }
+
+    /* Add more specific styles for smaller screens as needed */
+}

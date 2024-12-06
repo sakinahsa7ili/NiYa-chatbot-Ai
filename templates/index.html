@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Homepage</title>
+</head>
+<body>
+    <div class="in-container">
+        <h1>Welcome to NiYa Personal Health Care Centre</h1>
+        <p>Click the button below to start a chat with NiYa, your personal health assistant.</p>
+        <a href="#" class="button" id="startChatButton">Start Chat</a>
+        <br>
+        <img src="{{ url_for('static', filename='niya.png') }}" alt="Your Image Description">
+    </div>
+
+
+    <footer>
+        <p>&copy; 2023 NiYa Personal Health Care Centre. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('startChatButton').addEventListener('click', function() {
+            showLoading();
+            // Simulate a delay (you can replace this with actual asynchronous operations)
+            setTimeout(function() {
+                window.location.href = "{{ url_for('chatbot') }}";
+            }, 2000); // Adjust the duration of the loading as needed
+        });
+
+        function showLoading() {
+            var loadingContainer = document.createElement('div');
+            loadingContainer.classList.add('loading-container');
+
+            var loadingSpinner = document.createElement('div');
+            loadingSpinner.classList.add('loading-spinner');
+
+            var loadingText = document.createElement('p');
+            loadingText.textContent = 'Loading...';
+
+            loadingContainer.appendChild(loadingSpinner);
+            loadingContainer.appendChild(loadingText);
+
+            document.body.appendChild(loadingContainer);
+        }
+    </script>
+</body>
+</html>
